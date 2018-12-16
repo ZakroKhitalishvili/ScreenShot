@@ -1,0 +1,10 @@
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\bin\Debug\ScreenShot.exe
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\bin\Debug\ScreenShot.exe.config
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.FormResource.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.Properties.Resources.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.csproj.GenerateResource.Cache
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.exe
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.pdb
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.FullScreenForm.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.HomeForm.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.ImageReadyForm.resources

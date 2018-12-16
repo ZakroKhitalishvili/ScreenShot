@@ -1,0 +1,12 @@
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\bin\Release\ScreenShot.exe.config
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\bin\Release\ScreenShot.exe
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\bin\Release\ScreenShot.pdb
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.FormResource.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.Properties.Resources.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.csproj.GenerateResource.Cache
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.exe
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.pdb
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.FullScreenForm.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.csprojResolveAssemblyReference.cache
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.HomeForm.resources
+c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Release\ScreenShot.ImageReadyForm.resources
