@@ -26,7 +26,7 @@ namespace ScreenShot
         private void printScreenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FullScreenForm fullScreenForm = new FullScreenForm();
+            FullScreenForm fullScreenForm = new FullScreenForm(this);
 
             fullScreenForm.Show();
             this.Hide();

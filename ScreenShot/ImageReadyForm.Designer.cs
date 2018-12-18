@@ -32,9 +32,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.colorButton = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.paintRadioButton = new System.Windows.Forms.RadioButton();
+            this.ellipseRadioButton = new System.Windows.Forms.RadioButton();
+            this.rectangleRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -45,12 +45,16 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(48, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 266);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartDrawing);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drawing);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EndDrawing);
             // 
             // panel1
             // 
@@ -73,45 +77,45 @@
             this.colorButton.UseVisualStyleBackColor = false;
             this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
             // 
-            // radioButton1
+            // paintRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(84, 6);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(49, 17);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Paint";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.paintRadioButton.AutoSize = true;
+            this.paintRadioButton.Location = new System.Drawing.Point(84, 6);
+            this.paintRadioButton.Name = "paintRadioButton";
+            this.paintRadioButton.Size = new System.Drawing.Size(49, 17);
+            this.paintRadioButton.TabIndex = 5;
+            this.paintRadioButton.TabStop = true;
+            this.paintRadioButton.Text = "Paint";
+            this.paintRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // ellipseRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(154, 6);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(83, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Draw Ellipse";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.ellipseRadioButton.AutoSize = true;
+            this.ellipseRadioButton.Location = new System.Drawing.Point(154, 6);
+            this.ellipseRadioButton.Name = "ellipseRadioButton";
+            this.ellipseRadioButton.Size = new System.Drawing.Size(83, 17);
+            this.ellipseRadioButton.TabIndex = 6;
+            this.ellipseRadioButton.TabStop = true;
+            this.ellipseRadioButton.Text = "Draw Ellipse";
+            this.ellipseRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rectangleRadioButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(243, 6);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(87, 17);
-            this.radioButton3.TabIndex = 7;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Draw Square";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rectangleRadioButton.AutoSize = true;
+            this.rectangleRadioButton.Location = new System.Drawing.Point(243, 6);
+            this.rectangleRadioButton.Name = "rectangleRadioButton";
+            this.rectangleRadioButton.Size = new System.Drawing.Size(102, 17);
+            this.rectangleRadioButton.TabIndex = 7;
+            this.rectangleRadioButton.TabStop = true;
+            this.rectangleRadioButton.Text = "Draw Rectangle";
+            this.rectangleRadioButton.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.colorButton);
-            this.panel2.Controls.Add(this.radioButton3);
-            this.panel2.Controls.Add(this.radioButton1);
-            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.rectangleRadioButton);
+            this.panel2.Controls.Add(this.paintRadioButton);
+            this.panel2.Controls.Add(this.ellipseRadioButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 296);
             this.panel2.MaximumSize = new System.Drawing.Size(0, 300);
@@ -122,15 +126,15 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.95818F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.61957F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.38043F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(593, 368);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
@@ -160,9 +164,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.Button colorButton;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton paintRadioButton;
+        private System.Windows.Forms.RadioButton ellipseRadioButton;
+        private System.Windows.Forms.RadioButton rectangleRadioButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }

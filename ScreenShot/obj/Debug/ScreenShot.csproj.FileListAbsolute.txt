@@ -8,3 +8,16 @@ c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\D
 c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.FullScreenForm.resources
 c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.HomeForm.resources
 c:\users\zakro\documents\visual studio 2015\Projects\ScreenShot\ScreenShot\obj\Debug\ScreenShot.ImageReadyForm.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\bin\Debug\ScreenShot.exe.config
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\bin\Debug\ScreenShot.exe
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\bin\Debug\ScreenShot.pdb
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.csprojAssemblyReference.cache
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.FormResource.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.FullScreenForm.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.HomeForm.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.ImageReadyForm.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.Properties.Resources.resources
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.csproj.GenerateResource.cache
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.csproj.CoreCompileInputs.cache
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.exe
+C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Debug\ScreenShot.pdb

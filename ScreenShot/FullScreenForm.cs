@@ -17,10 +17,13 @@ namespace ScreenShot
 
         private Panel selectedArea;
 
-        public FullScreenForm()
+        private Form callerForm;
+
+        public FullScreenForm(Form callerForm)
         {
             InitializeComponent();
             Opacity = 0.5;
+            this.callerForm = callerForm;
         }
 
         private void FullScreenForm_Load(object sender, EventArgs e)
@@ -28,7 +31,6 @@ namespace ScreenShot
             var bounds = Screen.PrimaryScreen.Bounds;
             Location = new Point(0,0);
             FormBorderStyle = FormBorderStyle.None;
-            Dock = DockStyle.Fill;
             Width = bounds.Width;
             Height = bounds.Height;
         }
@@ -36,41 +38,50 @@ namespace ScreenShot
 
         private void MouseDown_Callback(object sender, MouseEventArgs e)
         {
-            isSnipping = true;
-            selectedArea = new Panel();
-            selectedArea.BackColor = Color.Black;
-            this.Controls.Add(selectedArea);
-            selectedArea.Location = e.Location;
-            selectedArea.Size = new Size(0, 0);
+            if (e.Button == MouseButtons.Left)
+            {
+                isSnipping = true;
+                selectedArea = new Panel();
+                // TransparencyKey for this form is Black, that makes this panel transparent
+                // hence a snipping area looks clear
+                selectedArea.BackColor = Color.Black;
+                this.Controls.Add(selectedArea);
+                selectedArea.Location = e.Location;
+                selectedArea.Size = new Size(0, 0);
+            }
+            else
+            {
+                BackToStartForm();
+            }
         }
 
         private void MouseUp_Callback(object sender, MouseEventArgs e)
         {
             isSnipping = false;
-            Bitmap bitMap = new Bitmap(selectedArea.Size.Width, selectedArea.Size.Height);
-
-            Graphics graphics =  Graphics.FromImage(bitMap);
-            graphics.CopyFromScreen(
-                selectedArea.Location.X,
-                selectedArea.Location.Y,
-                0,
-                0,
-                selectedArea.Size);
-
-            ImageReadyForm imageReadyForm = new ImageReadyForm(bitMap);
-            imageReadyForm.Show();
-            this.Close();
-            
+            if (e.Button == MouseButtons.Left)
+            {             
+                if (selectedArea.Size.Height != 0 && selectedArea.Size.Width != 0)
+                {
+                    var bitMap = GenerateImage();
+                    ImageReadyForm imageReadyForm = new ImageReadyForm(bitMap);
+                    imageReadyForm.Show();
+                    this.Close();
+                }
+                else
+                {
+                    selectedArea = null;
+                }
+            }
+            else
+            {
+                selectedArea = null;
+            }
         }
 
         private void MouseMove_Callback(object sender, MouseEventArgs e)
         {
             if(isSnipping)
             {
-                //MessageBox.Show(
-                //    string.Format("selected area ({0},{1}) \n mouse move ({2},{3})",
-                //    selectedArea.Location.X, selectedArea.Location.Y,
-                //    e.Location.X, e.Location.Y));
 
                 if (e.Location.X > selectedArea.Location.X || e.Location.Y > selectedArea.Location.Y)
                 {
@@ -86,7 +97,28 @@ namespace ScreenShot
             MessageBox.Show("error while generating image");
             return false;
         }
-        
+
+
+        private void BackToStartForm()
+        {
+            this.Close();
+            callerForm.Show();
+        }
+
+        private Bitmap GenerateImage()
+        {
+            Bitmap bitMap = new Bitmap(selectedArea.Size.Width, selectedArea.Size.Height);
+
+            Graphics graphics = Graphics.FromImage(bitMap);
+            graphics.CopyFromScreen(
+                selectedArea.Location.X,
+                selectedArea.Location.Y,
+                0,
+                0,
+                selectedArea.Size);
+
+            return bitMap;
+        }
 
     }
 }
