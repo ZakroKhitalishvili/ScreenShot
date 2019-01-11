@@ -23,3 +23,16 @@ C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Release\Scr
 C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Release\ScreenShot.csproj.CoreCompileInputs.cache
 C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Release\ScreenShot.exe
 C:\Users\IDGUser\Desktop\ScreenShot-master\ScreenShot\ScreenShot\obj\Release\ScreenShot.pdb
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\bin\Release\ScreenShot.exe.config
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\bin\Release\ScreenShot.exe
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\bin\Release\ScreenShot.pdb
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.csprojAssemblyReference.cache
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.FormResource.resources
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.FullScreenForm.resources
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.HomeForm.resources
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.ImageReadyForm.resources
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.Properties.Resources.resources
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.csproj.GenerateResource.cache
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.csproj.CoreCompileInputs.cache
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.exe
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Release\ScreenShot.pdb

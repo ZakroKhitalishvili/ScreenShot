@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="paintRadioButtonText" xml:space="preserve">
+    <value>Paint</value>
+  </data>
   <data name="printScreenButtonText" xml:space="preserve">
     <value>PrtSc</value>
+  </data>
+  <data name="saveButtonText" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>
