@@ -41,6 +41,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.brushSizeInput = new System.Windows.Forms.NumericUpDown();
+            this.markerRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.markerRadioButton);
             this.panel2.Controls.Add(this.brushSizeInput);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.saveButton);
@@ -160,18 +162,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(384, 10);
+            this.label1.Location = new System.Drawing.Point(479, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Brush Size:";
+            this.label1.Text = "Pen Size:";
             // 
             // brushSizeInput
             // 
-            this.brushSizeInput.Location = new System.Drawing.Point(451, 10);
+            this.brushSizeInput.Location = new System.Drawing.Point(545, 6);
             this.brushSizeInput.Name = "brushSizeInput";
-            this.brushSizeInput.Size = new System.Drawing.Size(120, 20);
+            this.brushSizeInput.Size = new System.Drawing.Size(55, 20);
             this.brushSizeInput.TabIndex = 10;
+            // 
+            // markerRadioButton
+            // 
+            this.markerRadioButton.AutoSize = true;
+            this.markerRadioButton.Location = new System.Drawing.Point(351, 6);
+            this.markerRadioButton.Name = "markerRadioButton";
+            this.markerRadioButton.Size = new System.Drawing.Size(58, 17);
+            this.markerRadioButton.TabIndex = 11;
+            this.markerRadioButton.TabStop = true;
+            this.markerRadioButton.Text = "Marker";
+            this.markerRadioButton.UseVisualStyleBackColor = true;
             // 
             // ImageReadyForm
             // 
@@ -209,5 +222,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.NumericUpDown brushSizeInput;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton markerRadioButton;
     }
 }

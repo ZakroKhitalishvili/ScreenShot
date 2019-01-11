@@ -17,9 +17,10 @@ namespace ScreenShot
         private Bitmap snippedImage;
         private Graphics imageGraphics;
         private Color brushColor;
+        private Color markerColor;
         private bool isDrawing = false;
         private Point startingPoint;
-        private string[] fileFilters = { "PNG|*.png;", "JPG|*.jpg;", "JPEG|*.jpeg;" , "All files |*.*" };
+        private string[] fileFilters = { "PNG|*.png;", "JPG|*.jpg;", "JPEG|*.jpeg;", "All files |*.*" };
         //private Graphics temporaryGraphics;
 
         public ImageReadyForm()
@@ -34,6 +35,7 @@ namespace ScreenShot
             pictureBox1.Image = snippedImage;
             imageGraphics = Graphics.FromImage(snippedImage);
             brushColor = Color.Red;
+            markerColor = Color.FromArgb(120, Color.Yellow);
             colorButton.BackColor = Color.Red;
 
             saveFileDialog1.AddExtension = true;
@@ -84,18 +86,45 @@ namespace ScreenShot
                     }
                     else
                     {
-                        if (!startingPoint.Equals(e.Location))
+                        if (Distance(startingPoint, e.Location) >= 10)
                         {
-                            var brush = new SolidBrush(brushColor);
                             var pen = new Pen(brushColor);
+                            var size = (float)brushSizeInput.Value;
+                            pen.Width = size;
 
-                            pen.Width = (int)brushSizeInput.Value;
+                            var ellipseLocation = e.Location;
+                            ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
+                            imageGraphics.FillEllipse(new SolidBrush(brushColor), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
                             imageGraphics.DrawLine(pen, startingPoint, e.Location);
+
                             pictureBox1.Invalidate();
                             startingPoint = e.Location;
                         }
                     }
+                }
 
+                if (markerRadioButton.Checked)
+                {
+                    if (startingPoint == Point.Empty)
+                    {
+                        startingPoint = e.Location;
+                    }
+                    else
+                    {
+                        if (Distance(startingPoint, e.Location) >= 10)
+                        {                           
+                            var pen = new Pen(markerColor);
+                            var size = (float)brushSizeInput.Value;
+                            pen.Width = size;
+                            var ellipseLocation = e.Location;
+                            ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
+                            imageGraphics.FillEllipse(new SolidBrush(Color.FromArgb(5,Color.Yellow)), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
+                            imageGraphics.DrawLine(pen, startingPoint, e.Location);
+
+                            pictureBox1.Invalidate();
+                            startingPoint = e.Location;
+                        }
+                    }
                 }
                 //if(rectangleRadioButton.Checked)
                 //{
@@ -144,6 +173,11 @@ namespace ScreenShot
 
                 snippedImage.Save(saveFileDialog1.FileName);
             }
+        }
+
+        private double Distance(Point first, Point second)
+        {
+            return Math.Sqrt(Math.Pow(first.X - second.X, 2) + Math.Pow(first.Y - second.Y, 2));
         }
     }
 }
