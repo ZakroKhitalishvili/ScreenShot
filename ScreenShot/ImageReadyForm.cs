@@ -16,12 +16,14 @@ namespace ScreenShot
     {
         private Bitmap snippedImage;
         private Graphics imageGraphics;
+        private Bitmap temporaryImage;
         private Color brushColor;
         private Color markerColor;
         private bool isDrawing = false;
         private Point startingPoint;
         private string[] fileFilters = { "PNG|*.png;", "JPG|*.jpg;", "JPEG|*.jpeg;", "All files |*.*" };
-        //private Graphics temporaryGraphics;
+        private List<Bitmap> history;
+        private int currentHistoryIndex;
 
         public ImageReadyForm()
         {
@@ -31,6 +33,11 @@ namespace ScreenShot
         public ImageReadyForm(Bitmap snippedImage)
         {
             InitializeComponent();
+
+            history = new List<Bitmap>();
+            history.Add((Bitmap)snippedImage.Clone());
+            currentHistoryIndex = 0;
+
             this.snippedImage = snippedImage;
             pictureBox1.Image = snippedImage;
             imageGraphics = Graphics.FromImage(snippedImage);
@@ -80,87 +87,121 @@ namespace ScreenShot
             {
                 if (paintRadioButton.Checked)
                 {
-                    if (startingPoint == Point.Empty)
+                    if (Distance(startingPoint, e.Location) >= 10)
                     {
+                        var pen = new Pen(brushColor);
+                        var size = (float)brushSizeInput.Value;
+                        pen.Width = size;
+
+                        var ellipseLocation = e.Location;
+                        ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
+                        imageGraphics.FillEllipse(new SolidBrush(brushColor), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
+                        imageGraphics.DrawLine(pen, startingPoint, e.Location);
+
+                        pictureBox1.Invalidate();
                         startingPoint = e.Location;
-                    }
-                    else
-                    {
-                        if (Distance(startingPoint, e.Location) >= 10)
-                        {
-                            var pen = new Pen(brushColor);
-                            var size = (float)brushSizeInput.Value;
-                            pen.Width = size;
-
-                            var ellipseLocation = e.Location;
-                            ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
-                            imageGraphics.FillEllipse(new SolidBrush(brushColor), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
-                            imageGraphics.DrawLine(pen, startingPoint, e.Location);
-
-                            pictureBox1.Invalidate();
-                            startingPoint = e.Location;
-                        }
                     }
                 }
 
                 if (markerRadioButton.Checked)
                 {
-                    if (startingPoint == Point.Empty)
+                    if (Distance(startingPoint, e.Location) >= 10)
                     {
+                        var pen = new Pen(markerColor);
+                        var size = (float)brushSizeInput.Value;
+                        pen.Width = size;
+                        var ellipseLocation = e.Location;
+                        ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
+                        imageGraphics.FillEllipse(new SolidBrush(Color.FromArgb(5, Color.Yellow)), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
+                        imageGraphics.DrawLine(pen, startingPoint, e.Location);
+
+                        pictureBox1.Invalidate();
                         startingPoint = e.Location;
                     }
-                    else
-                    {
-                        if (Distance(startingPoint, e.Location) >= 10)
-                        {                           
-                            var pen = new Pen(markerColor);
-                            var size = (float)brushSizeInput.Value;
-                            pen.Width = size;
-                            var ellipseLocation = e.Location;
-                            ellipseLocation.Offset(-((int)size / 2), -(int)size / 2);
-                            imageGraphics.FillEllipse(new SolidBrush(Color.FromArgb(5,Color.Yellow)), ellipseLocation.X, ellipseLocation.Y, pen.Width, pen.Width);
-                            imageGraphics.DrawLine(pen, startingPoint, e.Location);
+                }
 
-                            pictureBox1.Invalidate();
-                            startingPoint = e.Location;
-                        }
+                if (rectangleRadioButton.Checked)
+                {
+                    if (e.Location.X > startingPoint.X && e.Location.Y > startingPoint.Y)
+                    {
+                        var width = e.Location.X - startingPoint.X;
+                        var height = e.Location.Y - startingPoint.Y;
+                        var pen = new Pen(brushColor, (float)brushSizeInput.Value);
+                        temporaryImage = (Bitmap)snippedImage.Clone();
+                        pictureBox1.Image = temporaryImage;
+                        var temporaryGraphics = Graphics.FromImage(temporaryImage);
+                        temporaryGraphics.DrawRectangle(pen, new Rectangle(startingPoint, new Size(width, height)));
+
+                        pictureBox1.Invalidate();
                     }
                 }
-                //if(rectangleRadioButton.Checked)
-                //{
-                //    if (e.Location.X > startingPoint.X && e.Location.Y > startingPoint.Y)
-                //    {
-                //        var width = e.Location.X - startingPoint.X;
-                //        var height = e.Location.Y - startingPoint.Y;
-                //        temporaryGraphics.DrawRectangle(
-                //            new Pen(brushColor),
-                //            new Rectangle(startingPoint, new Size(width, height)));
-                //    }
-                //}
+
+                if (ellipseRadioButton.Checked)
+                {
+                    if (e.Location.X > startingPoint.X && e.Location.Y > startingPoint.Y)
+                    {
+                        var width = e.Location.X - startingPoint.X;
+                        var height = e.Location.Y - startingPoint.Y;
+                        var pen = new Pen(brushColor, (float)brushSizeInput.Value);
+                        temporaryImage = (Bitmap)snippedImage.Clone();
+                        pictureBox1.Image = temporaryImage;
+                        var temporaryGraphics = Graphics.FromImage(temporaryImage);
+                        temporaryGraphics.DrawEllipse(pen, new Rectangle(startingPoint, new Size(width, height)));
+
+                        pictureBox1.Invalidate();
+                    }
+                }
             }
         }
 
         private void EndDrawing(object sender, MouseEventArgs e)
         {
-            isDrawing = false;
-            startingPoint = Point.Empty;
+            EndDrawing();
+        }
 
+        private void EndDrawing()
+        {
+            if (isDrawing)
+            {
+                isDrawing = false;
+                startingPoint = Point.Empty;
+                if (rectangleRadioButton.Checked || ellipseRadioButton.Checked)
+                {
+                    if (temporaryImage != null)
+                    {
+                        UpdateView(temporaryImage);
+                        temporaryImage = null;
+                    }
+                }
+                if(currentHistoryIndex<history.Count-1)
+                {
+                    history.RemoveRange(currentHistoryIndex + 1, history.Count - currentHistoryIndex - 1);
+                }
+                history.Add((Bitmap)snippedImage.Clone());
+                currentHistoryIndex++;
+            }
         }
 
         private void StartDrawing(object sender, MouseEventArgs e)
         {
             isDrawing = true;
-            //if (rectangleRadioButton.Checked)
-            //{
-            //    startingPoint = e.Location;
-            //    temporaryGraphics = Graphics.FromImage(snippedImage);
-
-            //}
+            startingPoint = e.Location;
+            if (rectangleRadioButton.Checked || ellipseRadioButton.Checked)
+            {
+                startingPoint = e.Location;
+            }
         }
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(snippedImage, 0, 0, snippedImage.Width, snippedImage.Height);
+            if (temporaryImage != null)
+            {
+                e.Graphics.DrawImage(temporaryImage, 0, 0, snippedImage.Width, snippedImage.Height);
+            }
+            else
+            {
+                e.Graphics.DrawImage(snippedImage, 0, 0, snippedImage.Width, snippedImage.Height);
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -178,6 +219,38 @@ namespace ScreenShot
         private double Distance(Point first, Point second)
         {
             return Math.Sqrt(Math.Pow(first.X - second.X, 2) + Math.Pow(first.Y - second.Y, 2));
+        }
+
+        private void EndDrawing(object sender, EventArgs e)
+        {
+            EndDrawing();
+        }
+
+        private void forwardHistoryButton_Click(object sender, EventArgs e)
+        {
+            if(history.Count>currentHistoryIndex+1)
+            {
+                currentHistoryIndex++;
+                UpdateView(history[currentHistoryIndex]);
+            }
+        }
+
+        private void backHistoryButton_Click(object sender, EventArgs e)
+        {
+            if (currentHistoryIndex > 0)
+            {
+                currentHistoryIndex--;
+                UpdateView(history[currentHistoryIndex]);
+                
+            }
+        }
+
+        private void UpdateView(Bitmap image)
+        {
+            snippedImage = image;
+            pictureBox1.Image = snippedImage;
+            imageGraphics = Graphics.FromImage(snippedImage);
+            pictureBox1.Invalidate();
         }
     }
 }

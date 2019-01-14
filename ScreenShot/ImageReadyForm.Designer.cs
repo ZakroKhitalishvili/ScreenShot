@@ -36,17 +36,19 @@
             this.ellipseRadioButton = new System.Windows.Forms.RadioButton();
             this.rectangleRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.markerRadioButton = new System.Windows.Forms.RadioButton();
+            this.brushSizeInput = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.brushSizeInput = new System.Windows.Forms.NumericUpDown();
-            this.markerRadioButton = new System.Windows.Forms.RadioButton();
+            this.backHistoryButton = new System.Windows.Forms.Button();
+            this.forwardHistoryButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brushSizeInput)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -59,6 +61,7 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartDrawing);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.EndDrawing);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drawing);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EndDrawing);
             // 
@@ -118,6 +121,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.forwardHistoryButton);
+            this.panel2.Controls.Add(this.backHistoryButton);
             this.panel2.Controls.Add(this.markerRadioButton);
             this.panel2.Controls.Add(this.brushSizeInput);
             this.panel2.Controls.Add(this.label1);
@@ -133,6 +138,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(631, 69);
             this.panel2.TabIndex = 8;
+            // 
+            // markerRadioButton
+            // 
+            this.markerRadioButton.AutoSize = true;
+            this.markerRadioButton.Location = new System.Drawing.Point(351, 6);
+            this.markerRadioButton.Name = "markerRadioButton";
+            this.markerRadioButton.Size = new System.Drawing.Size(58, 17);
+            this.markerRadioButton.TabIndex = 11;
+            this.markerRadioButton.TabStop = true;
+            this.markerRadioButton.Text = "Marker";
+            this.markerRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // brushSizeInput
+            // 
+            this.brushSizeInput.Location = new System.Drawing.Point(545, 6);
+            this.brushSizeInput.Name = "brushSizeInput";
+            this.brushSizeInput.Size = new System.Drawing.Size(55, 20);
+            this.brushSizeInput.TabIndex = 10;
+            this.brushSizeInput.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(479, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Pen Size:";
             // 
             // saveButton
             // 
@@ -159,32 +196,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(637, 398);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
-            // label1
+            // backHistoryButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(479, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Pen Size:";
+            this.backHistoryButton.Location = new System.Drawing.Point(433, 32);
+            this.backHistoryButton.Name = "backHistoryButton";
+            this.backHistoryButton.Size = new System.Drawing.Size(75, 23);
+            this.backHistoryButton.TabIndex = 12;
+            this.backHistoryButton.Text = "Back";
+            this.backHistoryButton.UseVisualStyleBackColor = true;
+            this.backHistoryButton.Click += new System.EventHandler(this.backHistoryButton_Click);
             // 
-            // brushSizeInput
+            // forwardHistoryButton
             // 
-            this.brushSizeInput.Location = new System.Drawing.Point(545, 6);
-            this.brushSizeInput.Name = "brushSizeInput";
-            this.brushSizeInput.Size = new System.Drawing.Size(55, 20);
-            this.brushSizeInput.TabIndex = 10;
-            // 
-            // markerRadioButton
-            // 
-            this.markerRadioButton.AutoSize = true;
-            this.markerRadioButton.Location = new System.Drawing.Point(351, 6);
-            this.markerRadioButton.Name = "markerRadioButton";
-            this.markerRadioButton.Size = new System.Drawing.Size(58, 17);
-            this.markerRadioButton.TabIndex = 11;
-            this.markerRadioButton.TabStop = true;
-            this.markerRadioButton.Text = "Marker";
-            this.markerRadioButton.UseVisualStyleBackColor = true;
+            this.forwardHistoryButton.Location = new System.Drawing.Point(515, 32);
+            this.forwardHistoryButton.Name = "forwardHistoryButton";
+            this.forwardHistoryButton.Size = new System.Drawing.Size(75, 23);
+            this.forwardHistoryButton.TabIndex = 13;
+            this.forwardHistoryButton.Text = "Forward";
+            this.forwardHistoryButton.UseVisualStyleBackColor = true;
+            this.forwardHistoryButton.Click += new System.EventHandler(this.forwardHistoryButton_Click);
             // 
             // ImageReadyForm
             // 
@@ -201,8 +231,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.brushSizeInput)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -223,5 +253,7 @@
         private System.Windows.Forms.NumericUpDown brushSizeInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton markerRadioButton;
+        private System.Windows.Forms.Button forwardHistoryButton;
+        private System.Windows.Forms.Button backHistoryButton;
     }
 }
