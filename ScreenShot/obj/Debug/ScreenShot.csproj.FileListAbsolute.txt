@@ -34,3 +34,7 @@ C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.c
 C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.csproj.CoreCompileInputs.cache
 C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.exe
 C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.pdb
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\bin\Debug\ScreenShot.exe.manifest
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\bin\Debug\ScreenShot.application
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.exe.manifest
+C:\Users\zakro\Desktop\Github Repos\ScreenShot\ScreenShot\obj\Debug\ScreenShot.application

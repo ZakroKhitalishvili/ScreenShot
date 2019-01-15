@@ -78,7 +78,6 @@ namespace ScreenShot
 
         private void ImageReadyForm_ResizeEnd(object sender, EventArgs e)
         {
-            //panel1.Size = new Size(panel1.Size.Width,Convert.ToInt32(this.Size.Height * 0.8));
         }
 
         private void Drawing(object sender, MouseEventArgs e)
@@ -173,12 +172,15 @@ namespace ScreenShot
                         temporaryImage = null;
                     }
                 }
+                //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
                 if(currentHistoryIndex<history.Count-1)
                 {
                     history.RemoveRange(currentHistoryIndex + 1, history.Count - currentHistoryIndex - 1);
                 }
+
                 history.Add((Bitmap)snippedImage.Clone());
                 currentHistoryIndex++;
+               // MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
             }
         }
 
@@ -233,6 +235,7 @@ namespace ScreenShot
                 currentHistoryIndex++;
                 UpdateView(history[currentHistoryIndex]);
             }
+            //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
         }
 
         private void backHistoryButton_Click(object sender, EventArgs e)
@@ -241,16 +244,18 @@ namespace ScreenShot
             {
                 currentHistoryIndex--;
                 UpdateView(history[currentHistoryIndex]);
-                
             }
+            //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
         }
 
         private void UpdateView(Bitmap image)
         {
-            snippedImage = image;
+            snippedImage = (Bitmap)image.Clone();
             pictureBox1.Image = snippedImage;
             imageGraphics = Graphics.FromImage(snippedImage);
             pictureBox1.Invalidate();
         }
+
+        
     }
 }
