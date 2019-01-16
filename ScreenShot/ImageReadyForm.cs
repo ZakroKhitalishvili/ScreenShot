@@ -86,7 +86,7 @@ namespace ScreenShot
             {
                 if (paintRadioButton.Checked)
                 {
-                    if (Distance(startingPoint, e.Location) >= 10)
+                    if (Distance(startingPoint, e.Location) >= 1)
                     {
                         var pen = new Pen(brushColor);
                         var size = (float)brushSizeInput.Value;
@@ -104,7 +104,7 @@ namespace ScreenShot
 
                 if (markerRadioButton.Checked)
                 {
-                    if (Distance(startingPoint, e.Location) >= 10)
+                    if (Distance(startingPoint, e.Location) >= 5)
                     {
                         var pen = new Pen(markerColor);
                         var size = (float)brushSizeInput.Value;
@@ -172,7 +172,6 @@ namespace ScreenShot
                         temporaryImage = null;
                     }
                 }
-                //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
                 if(currentHistoryIndex<history.Count-1)
                 {
                     history.RemoveRange(currentHistoryIndex + 1, history.Count - currentHistoryIndex - 1);
@@ -180,7 +179,6 @@ namespace ScreenShot
 
                 history.Add((Bitmap)snippedImage.Clone());
                 currentHistoryIndex++;
-               // MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
             }
         }
 
@@ -235,7 +233,6 @@ namespace ScreenShot
                 currentHistoryIndex++;
                 UpdateView(history[currentHistoryIndex]);
             }
-            //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
         }
 
         private void backHistoryButton_Click(object sender, EventArgs e)
@@ -245,7 +242,6 @@ namespace ScreenShot
                 currentHistoryIndex--;
                 UpdateView(history[currentHistoryIndex]);
             }
-            //MessageBox.Show(string.Format("{0} history states, {1} current index", history.Count, currentHistoryIndex));
         }
 
         private void UpdateView(Bitmap image)
